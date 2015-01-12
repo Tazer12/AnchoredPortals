@@ -6,6 +6,8 @@ package org.anchoredportals.main;
  */
 public class InvalidPortalLocationException extends RuntimeException
 {
+	private static final long serialVersionUID = 336565015338651782L;
+
 	public InvalidPortalLocationException()
 	{
 		super("Invalid Portal Location");

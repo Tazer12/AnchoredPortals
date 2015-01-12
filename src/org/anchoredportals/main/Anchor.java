@@ -3,7 +3,6 @@ package org.anchoredportals.main;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -65,27 +64,7 @@ public class Anchor
 
 		Anchor anchor = new Anchor();
 		String uuidString = config.getString(path + ".uuid", "");
-		UUID uuid;
-		// This complexity is only necessary for a few months while
-		// we're in transition from name to UUID. 2014-05-30 IED.
-		if (uuidString.isEmpty())
-		{
-			String name = config.getString(path + ".player");
-			OfflinePlayer player = Bukkit.getOfflinePlayer(name);
-			if (player == null)
-			{
-				return null;
-			}
-			else
-			{
-				uuid = player.getUniqueId();
-			}
-		}
-		else
-		{
-			uuid = UUID.fromString(uuidString);
-		}
-		anchor.setUuid(uuid);
+		anchor.setUuid(UUID.fromString(uuidString));
 		anchor.setOverworldTerminus(overworldTerminus);
 		anchor.setNetherTerminus(netherTerminus);
 

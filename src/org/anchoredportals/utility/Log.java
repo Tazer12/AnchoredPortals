@@ -11,7 +11,6 @@ import java.util.logging.Logger;
  */
 public class Log
 {
-	@SuppressWarnings("NonConstantLogger")
 	private static Logger log;
 	private static Level level;
 

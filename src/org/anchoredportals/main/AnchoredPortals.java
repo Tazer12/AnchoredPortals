@@ -15,13 +15,11 @@ public final class AnchoredPortals extends JavaPlugin
 {
 	public static Log log;
 	private static Metrics metrics;
-	private static AnchoredPortals instance;
 	public static List<Anchor> anchors;
 
 	@Override
 	public void onEnable()
 	{
-		instance = this;
 		log = new Log(this.getLogger(), Level.ALL);
 
 		try
@@ -86,8 +84,5 @@ public final class AnchoredPortals extends JavaPlugin
 			}
 			metrics = null;
 		}
-
-		// The last thing we will do
-		instance = null;
 	}
 }

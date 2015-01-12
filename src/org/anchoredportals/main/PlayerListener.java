@@ -10,7 +10,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 public class PlayerListener implements Listener
@@ -18,14 +17,17 @@ public class PlayerListener implements Listener
 	@EventHandler
 	public void onPlayerChangedWorldEvent(PlayerChangedWorldEvent event)
 	{
+		if(event.getFrom().getEnvironment() == Environment.NETHER){
+			for(Iterator<Anchor> iterator = AnchoredPortals.anchors.iterator(); iterator.hasNext();){
+				Anchor anchor = iterator.next();
+				if(event.getPlayer().getUniqueId().equals(anchor.getUuid())){
+					iterator.remove();
+				}
+			}
+		}
 	}
-
-  @EventHandler
-  public void onPlayerRespawn(PlayerRespawnEvent event)
-	{
-	}
-
-	@EventHandler(priority = EventPriority.HIGHEST)
+	
+	@EventHandler(priority = EventPriority.NORMAL)
 	public void onPlayerPortalEvent(PlayerPortalEvent event)
 	{
 		if (event.getCause() == TeleportCause.NETHER_PORTAL)
